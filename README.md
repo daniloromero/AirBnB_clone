@@ -29,15 +29,14 @@ Documented commands (type help <topic>):
 ========================================
 EOF  help  quit
 
-(hbnb) 
-(hbnb) 
+(hbnb)
+(hbnb)
 (hbnb) quit
 $
 ```
 
 ### Non-Interactive Mode
-In this mode, is requiered that the shell is runned with a command input piped into the execution. This in order to make that the command runs as soon as the shell starts. Take into account that in this mode the prompt will not appear. 
-
+In this mode, is requiered that the shell is runned with a command input piped into the execution. This in order to make that the command runs as soon as the shell starts. Take into account that in this mode the prompt will not appear.
 
 ```
 $ echo "help" | ./console.py
@@ -46,7 +45,7 @@ $ echo "help" | ./console.py
 Documented commands (type help <topic>):
 ========================================
 EOF  help  quit
-(hbnb) 
+(hbnb)
 $
 $ cat test_help
 help
@@ -57,7 +56,7 @@ $ cat test_help | ./console.py
 Documented commands (type help <topic>):
 ========================================
 EOF  help  quit
-(hbnb) 
+(hbnb)
 $
 ```
 
