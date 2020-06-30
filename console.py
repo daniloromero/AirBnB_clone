@@ -32,15 +32,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ creates a new instance of base models """
-        if len(args) == 0:
+        if not args:
             print("** class name missing **")
             return
-        try:
-            args = shlex.split(args)
-            new_instance = eval(args[0])()
-            new_instance.save()
-            print(new_instance.id)
-        except:
+        tok = args.split()
+        if tok[0] in self.classes:
+            new_inst = eval("{}()".format(tokens[0]))
+            new_inst.save()
+            print("{}".format(new_inst.id))
+        else:
             print("** class doesn't exist **")
 
     def do_show(self, args):
