@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """ AirBnB Console """
-
-
 import cmd
 import sys
 import models
+import shlex
+from models.engine.file_storage import FileStorage
+from models.user import User
+from datetime import datetime
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """ class to read a command """
@@ -25,15 +32,16 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ creates a new instance of base models """
-        if not args:
+        if len(args) == 0:
             print("** class name missing **")
             return
         try:
-            new_inst = eval(args + "()")
-            new_inst.save()
-            print(new_inst.id)
+            args = shlex.split(args)
+            new_instance = eval(args[0])()
+            new_instance.save()
+            print(new_instance.id)
         except:
-            print("** class doesen't exist **")
+            print("** class doesn't exist **")
 
     def do_show(self, args):
         """ prints the string representation of an instance """
