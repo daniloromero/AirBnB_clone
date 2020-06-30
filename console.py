@@ -36,11 +36,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         tok = args.split()
-        if tok[0] in self.classes:
-            new_inst = eval("{}()".format(tokens[0]))
+        try:
+            new_inst = eval(tok[0])()
             new_inst.save()
             print("{}".format(new_inst.id))
-        else:
+        except:
             print("** class doesn't exist **")
 
     def do_show(self, args):
