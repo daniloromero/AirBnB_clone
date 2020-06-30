@@ -52,3 +52,5 @@ class Test_Console(unittest.TestCase):
     def teardown(self):
         """ deletes the file after the test """
         
+if __name__ == "__main__":
+    unittest.main()
