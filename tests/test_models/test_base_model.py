@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """Unittest module for BaseModel class"""
+import unittest
 from models.base_model import BaseModel
-from models import storage
 from models.engine.file_storage import FileStorage
 from os import path, remove
 import json
+from models import storage
 from datetime import datetime
 from uuid import uuid4
-import unittest
 
 
 class TestBaseModel(unittest.TestCase):
