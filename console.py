@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """ class to read a command """
     prompt = '(hbnb) '
@@ -83,30 +84,23 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             except:
                 print("** no instance found **")
-    
-    def do_all(self, args):
-        """ prints an strig representation of instances """
-            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def do_all(self):
+        """ prints string representation off all instnaces """
+        inst = []
+        if not args:
+            for i in storage.all():
+                inst.append(storage.all[i])
+            print(inst)
+            return
+        tok = args.split(" ")
+        if tok[0] in HBNBCommand.classes:
+            for i in storage.all():
+                if tok[0] in value.__class__.name__:
+                    inst.append(str(value))
+            print(inst)
+        else:
+            print("** class doesen't exist **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
