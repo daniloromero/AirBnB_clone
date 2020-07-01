@@ -31,6 +31,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(bm1, "created_at"))
         self.assertTrue(hasattr(bm1, "updated_at"))
         self.assertIsInstance(bm1, BaseModel)
+        self.assertEqual(type(bm1.id), str)
+        self.assertEqual(type(bm1.created_at), datetime)
+        self.assertEqual(type(bm1.updated_at), datetime)
 
     def test_uniq_id(self):
         """Tests unique user ids."""
