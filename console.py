@@ -84,6 +84,26 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             except:
                 print("** no instance found **")
+<<<<<<< HEAD
+=======
+
+    def do_all(self):
+        """ prints string representation off all instnaces """
+        inst = []
+        if not args:
+            for i in storage.all():
+                inst.append(storage.all[i])
+            print(inst)
+            return
+        tok = args.split(" ")
+        if tok[0] in HBNBCommand.classes:
+            for i in storage.all():
+                if tok[0] in value.__class__.name__:
+                    inst.append(str(value))
+            print(inst)
+        else:
+            print("** class doesen't exist **")
+>>>>>>> develop
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
