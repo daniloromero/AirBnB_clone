@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Unittest module for BaseModel class"""
+"""Unittest module for State class"""
 import unittest
+from models.state import State
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from os import path, remove
@@ -10,8 +11,8 @@ from datetime import datetime
 from uuid import uuid4
 
 
-class TestBaseModel(unittest.TestCase):
-    """ Test cases for Basemodel class"""
+class TestState(unittest.TestCase):
+    """ Test cases for State class"""
 
     def setUp(self):
         """ Set up for all methods """
@@ -26,30 +27,30 @@ class TestBaseModel(unittest.TestCase):
 
     def test_instance_creation_no_arg(self):
         """ No arguments """
-        bm1 = BaseModel()
-        self.assertTrue(hasattr(bm1, "id"))
-        self.assertTrue(hasattr(bm1, "created_at"))
-        self.assertTrue(hasattr(bm1, "updated_at"))
-        self.assertIsInstance(bm1, BaseModel)
-        self.assertEqual(type(bm1.id), str)
-        self.assertEqual(type(bm1.created_at), datetime)
-        self.assertEqual(type(bm1.updated_at), datetime)
+        ct1 = State()
+        self.assertTrue(hasattr(ct1, "id"))
+        self.assertTrue(hasattr(ct1, "created_at"))
+        self.assertTrue(hasattr(ct1, "updated_at"))
+        self.assertIsInstance(ct1, State)
+        self.assertEqual(type(ct1.id), str)
+        self.assertEqual(type(ct1.created_at), datetime)
+        self.assertEqual(type(ct1.updated_at), datetime)
 
     def test_uniq_id(self):
         """Tests unique user ids."""
 
-        l = [BaseModel().id for i in range(1000)]
+        l = [State().id for i in range(1000)]
         self.assertEqual(len(set(l)), len(l))
 
     def test_kwargs_instantiation(self):
         """Tests instantiation with **kwargs."""
 
-        my_model = BaseModel()
+        my_model = State()
         my_model.name = "Holberton"
         my_model.my_number = 89
         my_model_json = my_model.to_dict()
-        my_new_model = BaseModel(**my_model_json)
+        my_new_model = State(**my_model_json)
         self.assertEqual(my_new_model.to_dict(), my_model.to_dict())
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
