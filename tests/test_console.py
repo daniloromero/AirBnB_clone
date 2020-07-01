@@ -5,6 +5,9 @@ import pep8
 import tests
 import json
 import console
+import os
+from unittest.mock import patch
+from io import StringIO
 from console import HBNBCommand
 from models.base_model import BaseModel
 from models.user import User
@@ -20,7 +23,7 @@ class Documnetaion_Test(unittest.TestCase):
     """ will check for the console docs """
     def test_pep8(self):
         """ will check the console's pep8 """
-        style = pep8.styleguide(quiet=True)
+        style = pep8.StyleGuide(quiet=True)
         p = style.check_files(["console.py"])
         self.assertEqual(p.total_errors, 0)
 
@@ -33,10 +36,8 @@ class Documnetaion_Test(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.do_create.__doc__)
         self.assertIsNotNone(HBNBCommand.do_show.__doc__)
         self.assertIsNotNone(HBNBCommand.do_destroy.__doc__)
-        self.assertIsNotNone(HBNBCommand.do_all.__doc__)
-        self.assertIsNotNone(HBNBCommand.do_update.__doc__)
-
-class Test_Console(unittest.TestCase):
+        
+class TestConsole(unittest.TestCase):
     """ test for the console """
 
     @classmethod
@@ -49,8 +50,18 @@ class Test_Console(unittest.TestCase):
         """ deltes an instance """
         del cls.test_console
 
-    def teardown(self):
+    def tearDown(self):
         """ deletes the file after the test """
-        
+        try:
+            os.remove("file.json")
+        except:
+            pass
+
+    def test_emptyline(self):
+        """ Test empty line function """
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.test_console.onecmd("\n")
+            self.assertEqual('', f.getvalue())
+
 if __name__ == "__main__":
     unittest.main()
