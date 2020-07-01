@@ -35,6 +35,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(type(ct1.id), str)
         self.assertEqual(type(ct1.created_at), datetime)
         self.assertEqual(type(ct1.updated_at), datetime)
+
     def test_uniq_id(self):
         """Tests unique user ids."""
 

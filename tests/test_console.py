@@ -36,7 +36,8 @@ class Documnetaion_Test(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.do_create.__doc__)
         self.assertIsNotNone(HBNBCommand.do_show.__doc__)
         self.assertIsNotNone(HBNBCommand.do_destroy.__doc__)
-        
+
+
 class TestConsole(unittest.TestCase):
     """ test for the console """
 
