@@ -13,11 +13,15 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
     """ class to read a command """
     prompt = '(hbnb) '
+    classes = {"BaseModel": BaseModel, "User": User,
+               "Place": Place, "State": State, "City": City,
+               "Amenity": Amenity, "Review": Review}
 
     def emptyline(self):
         """ in case there is an empty line """
@@ -37,11 +41,11 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        tok = args.split()
         try:
-            new_inst = eval(tok[0])()
-            new_inst.save()
-            print("{}".format(new_inst.id))
+            if args in HBNBCommand.classes:
+                new_inst = HBNBCommand.classes.get(args)()
+                new_inst.save()
+                print("{}".format(new_inst.id))
         except:
             print("** class doesn't exist **")
 
@@ -52,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             if len(tok) == 0:
                 print("** class name missing **")
                 return
-            if tok[0] in self.classes:
+            if tok[0] in HBNBCommand.classes:
                 if len(tok) > 1:
                     key = tok[0] + "." + tok[1]
                     if key in models.storage.all():
@@ -62,46 +66,68 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
             else:
-                print("** class doesen't exsit **")
+                print("** class doesn't exsit **")
         except:
             print("** instance id missing **")
 
     def do_destroy(self, args):
         """ deletes an instance """
-        tok = args.split()
+        tok = args.split(" ")
         if not args:
             print("** class name missing **")
             return
-        elif args[0] not in self.classes:
-            print("** class doesen't exist **")
+        elif tok[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
             return
         elif len(tok) == 1:
             print("** instance id missing **")
             return
         else:
             try:
-                key = args[0] + "." + args[1]
-                storage.all().pop()
+                key = tok[0] + "." + tok[1]
+                storage.all().pop(key)
                 storage.save()
             except:
                 print("** no instance found **")
 
-    def do_all(self):
+    def do_all(self, args):
         """ prints string representation off all instnaces """
         inst = []
         if not args:
-            for i in storage.all():
-                inst.append(storage.all[i])
-            print(inst)
-            return
-        tok = args.split(" ")
-        if tok[0] in HBNBCommand.classes:
-            for i in storage.all():
-                if tok[0] in value.__class__.name__:
-                    inst.append(str(value))
-            print(inst)
+            inst = list(storage.all().values())
+            print(list(map(lambda x: str(x), inst)))
+        elif args in HBNBCommand.classes:
+            inst = list(storage.all().values())
+            inst = filter(lambda x: type(x) is
+                          HBNBCommand.classes.get(args), inst)
+            print(list(map(lambda x: str(x), inst)))
         else:
-            print("** class doesen't exist **")
+            print("** class doesn't exist **")
+
+    def do_update(self, args):
+        """ will update an instance """
+        tok = args.split(" ")
+        if not args:
+            print("** class name missing **")
+        elif tok[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif ("{}.{}".format(tok[0], tok[1])
+              not in storage.all().keys()):
+            print("** no instance found **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        else:
+            print("algo")
+            inst = storage.all()
+            key = "{}.{}".format(args[0], args[1])
+            if key in inst.keys():
+                atr = getattr(inst[key], args[2], "")
+                setattr(inst[key], args[2], type(atr)(args[3]))
+                inst[key].save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
