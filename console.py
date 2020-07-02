@@ -111,22 +111,21 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif tok[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(args) == 1:
+        elif len(tok) == 1:
             print("** instance id missing **")
         elif ("{}.{}".format(tok[0], tok[1])
               not in storage.all().keys()):
             print("** no instance found **")
-        elif len(args) == 2:
+        elif len(tok) == 2:
             print("** attribute name missing **")
-        elif len(args) == 3:
+        elif len(tok) == 3:
             print("** value missing **")
         else:
-            print("algo")
             inst = storage.all()
-            key = "{}.{}".format(args[0], args[1])
+            key = "{}.{}".format(tok[0], tok[1])
             if key in inst.keys():
-                atr = getattr(inst[key], args[2], "")
-                setattr(inst[key], args[2], type(atr)(args[3]))
+                atr = getattr(inst[key], tok[2], "")
+                setattr(inst[key], tok[2], type(atr)(tok[3]))
                 inst[key].save()
 
 if __name__ == '__main__':
