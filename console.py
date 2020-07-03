@@ -3,7 +3,6 @@
 import cmd
 import sys
 import models
-import shlex
 from models.engine.file_storage import FileStorage
 from models.user import User
 from datetime import datetime
@@ -66,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
             else:
-                print("** class doesn't exsit **")
+                print("** class doesn't exist **")
         except:
             print("** instance id missing **")
 
