@@ -40,12 +40,11 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        try:
-            if args in HBNBCommand.classes:
+        elif args in HBNBCommand.classes:
                 new_inst = HBNBCommand.classes.get(args)()
                 new_inst.save()
                 print("{}".format(new_inst.id))
-        except:
+        else:
             print("** class doesn't exist **")
 
     def do_show(self, args):
