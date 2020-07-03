@@ -58,11 +58,5 @@ class TestConsole(unittest.TestCase):
         except:
             pass
 
-    def test_emptyline(self):
-        """ Test empty line function """
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.test_console.onecmd("\n")
-            self.assertEqual('', f.getvalue())
-
 if __name__ == "__main__":
     unittest.main()
