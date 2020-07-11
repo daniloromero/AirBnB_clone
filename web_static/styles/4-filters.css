@@ -19,6 +19,6 @@
     float: right;
 }
 
-.filers button:hoover {
+.filters button:hover {
     opacity: 0.9;
 }
