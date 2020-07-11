@@ -25,7 +25,7 @@
 
 .locations {
     height: 100%
-    widht: 25%;
+    width: 25%;
     border-right: 1px solid #DDDDDD;
     float: left;
     line-height: 0.3;
@@ -33,13 +33,13 @@
 
 .amenities {
     height: 100%
-    widht: 25%;
+    width: 25%;
     line-height: 0.3;
     foat: left;
 }
 
 h3 {
-    font-weight:600;
+    font-weight: 600;
     margin-top: 20px;
     margin-left: 45px;
 }
