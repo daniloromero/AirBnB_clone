@@ -1,23 +1,28 @@
-newplaces {
+section.newplaces {
+    margin: 30px 0 0 20px;
+}
+
+section div.my_places {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.places h1 {
+section.newplaces h1 {
     font-size: 30px;
+    text-align: left;
 }
 
-.places article {
+section.newplaces article {
     width: 390px;
     margin: 20px;
     border: 1px solid #FF5A5F;
-    justify-content: center;
+    text-align: center;
     border-radius: 4px;
     padding: 20px;
 }
 
-.places article h2 {
+section.newplaces article h2 {
     font-size: 30px;
     margin-top: auto;
     margin-bottom: auto;
