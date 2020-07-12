@@ -24,18 +24,18 @@
 }
 
 .locations {
+    float: left;
+    line-height: 0.3;
     height: 100%;
     width: 25%;
     border-right: 1px solid #DDDDDD;
-    float: left;
-    line-height: 0.3;
 }
 
 .amenities {
+    float: left;
+    line-height: 0.3;
     height: 100%;
     width: 25%;
-    line-height: 0.3;
-    foat: left;
 }
 
 h3 {
@@ -45,7 +45,7 @@ h3 {
 }
 
 h4 {
-    font-weight:400;
+    font-weight: 400;
     font-size: 14px;
-    margin-left: 45px;
+    margin-top: 5px;
 }
